@@ -3,33 +3,49 @@ import XIcon from "@mui/icons-material/X";
 import PlaceOutlinedIcon from "@mui/icons-material/PlaceOutlined";
 import EventsList from "../Data.json";
 import "./TimeIcon.css";
+// import Footer from "./Footer";
+// import Navbar from "./Navbar";
+import { CheckCircleOutline } from "@mui/icons-material";
+import { useState } from "react";
 
 const Details = () => {
+  const [registered, setRegistered] = useState(false);
+  const handleRegister = ( ) => {
+    setRegistered(!setRegistered)
+  }
   return (
     <div>
+      {/* <button type="button" className="btn-close" aria-label="Close" /> */}
       {/* ----------------Top Image-------------------*/}
       {EventsList.map(event =>
         <div key={event.eventId}>
+          <button
+            type="button"
+            className="btn-close p-2 h3"
+            aria-label="Close"
+            formAction="none"
+          />
           <div className="d-flex justify-content-center h-5  m-4">
             <img
               src={event.imageUrl}
-              className="object-fit-contain border border-0 rounded"
+              className="object-fit-scale border border-0 rounded"
               alt="Centered Image"
-              width="942px"
-              height="390px"
+              width="742px"
+              height="290px"
             />
           </div>
 
           {/*---------------------Left Session -----------------------*/}
 
           <div
-            className="contain d-flex justify-content-between m-4 "
+            className="contain d-flex justify-content-between m-4  "
             key={event.eventId}
           >
             <div
-              className="left border border-dark flex-grow-1 me-3 p-4 rounded-5"
+              className="left border border-dark flex-grow-1 me-3 p-4 rounded-5 shadow-sm"
               style={{
-                width: "645px"
+                width: "645px",
+                boxShadow: "10px 10px 10px rgba(0, 0, 0, 0.8);"
                 // height: "828px"
               }}
             >
@@ -110,14 +126,30 @@ const Details = () => {
                   </dd>{" "}
                 </div>
               </div>
-              <div className="registration w-100  border border-black text-center rounded-3 my-4 p-3">
+              {/* <div className="registration w-100  border border-black text-center rounded-3 my-4 p-3">
                 <span>Not Registerd</span>
                 <div>
                   <a href="#">Click Here to Registerd</a>
                 </div>
+              </div> */}
+
+              {registered
+                ? <div>
+                    <CheckCircleOutline /> <span>You have Registerd</span>
+                  </div>
+                : <span>You have not Registerd</span>}
+
+              <div className="link">
+                <button
+                onClick={handleRegister}
+                  className="reg m-2 p-2 me-2 w-25 text-center rounded-3 table-hover"
+                  style={{ border: "2px solid green" }}
+                >
+                  Register{" "}
+                </button>
               </div>
 
-              <p className="para d-flex align-items-start justify-content-center">
+              <p className="para d-flex align-items-start justify-content-center text-start">
                 {event.des}
               </p>
             </div>
@@ -138,7 +170,7 @@ const Details = () => {
                     </dt>
                     <dd className="data w-75">Instructor at CDC Company</dd>
                     <div className="media d-flex">
-                      <div className="twitter me-3">
+                      <div className="twitter me-2">
                         <a
                           href="https://twitter.com/i/flow/login"
                           className="twitter text-dark"
@@ -154,7 +186,7 @@ const Details = () => {
                       </a>
                     </div>
                   </div>
-                  <div className="image align-self-start w-25">
+                  <div className="image w-25">
                     <img
                       src={event.image1Url}
                       width="50px"
@@ -173,7 +205,7 @@ const Details = () => {
                       Open Source dev at CDC Company
                     </dd>
                     <div className="media d-flex">
-                      <div className="twitter me-3">
+                      <div className="twitter me-2">
                         <a
                           href="https://twitter.com/i/flow/login"
                           className="twitter text-dark"
@@ -189,7 +221,7 @@ const Details = () => {
                       </a>
                     </div>
                   </div>
-                  <div className="image align-self-center w-25">
+                  <div className="image w-25">
                     <img
                       src={event.image2Url}
                       width="50px"

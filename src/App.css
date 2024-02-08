@@ -1,13 +1,19 @@
 #root {
   max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+  margin: 5px auto;
+  /* padding: 1rem; */
   /* font-family: 'Montaga', serif; */
   /* font-family: 'Open Sans', sans-serif; */
   /* font-family: 'Lato', sans-serif; */
   font-family: 'Roboto Slab', serif;
 }
-/* 
+
+@media only screen and (max-width:600px) {
+    #root{
+      margin: 0;
+    }
+}
+ 
 .logo {
   height: 6em;
   padding: 1.5em;
@@ -42,4 +48,4 @@
 
 .read-the-docs {
   color: #888;
-} */
+} 
