@@ -7,16 +7,18 @@ import "./TimeIcon.css";
 // import Navbar from "./Navbar";
 import { CheckCircleOutline } from "@mui/icons-material";
 import { useState } from "react";
+import Footer from "./Footer";
 
 const Details = () => {
   const [registered, setRegistered] = useState(false);
-  const handleRegister = ( ) => {
-    setRegistered(!setRegistered)
-  }
+  const handleRegister = () => {
+    setRegistered(!registered);
+  };
   return (
     <div>
       {/* <button type="button" className="btn-close" aria-label="Close" /> */}
       {/* ----------------Top Image-------------------*/}
+      {/* <Navbar/> */}
       {EventsList.map(event =>
         <div key={event.eventId}>
           <button
@@ -126,28 +128,33 @@ const Details = () => {
                   </dd>{" "}
                 </div>
               </div>
-              {/* <div className="registration w-100  border border-black text-center rounded-3 my-4 p-3">
-                <span>Not Registerd</span>
-                <div>
-                  <a href="#">Click Here to Registerd</a>
-                </div>
-              </div> */}
+             
 
               {registered
                 ? <div>
-                    <CheckCircleOutline /> <span>You have Registerd</span>
+                    <span className="no d-flex justify-content-center w-25">
+                      <CheckCircleOutline /> You have Registerd
+                    </span>{" "}
+                    <button
+                      onClick={handleRegister}
+                      className="reg m-2 p-2 me-2 w-25 text-center rounded-3 table-hover"
+                      style={{ border: "2px solid green" }}
+                    >
+                      Unregister{" "}
+                    </button>
                   </div>
-                : <span>You have not Registerd</span>}
-
-              <div className="link">
-                <button
-                onClick={handleRegister}
-                  className="reg m-2 p-2 me-2 w-25 text-center rounded-3 table-hover"
-                  style={{ border: "2px solid green" }}
-                >
-                  Register{" "}
-                </button>
-              </div>
+                : <div>
+                    <span className="no d-flex justify-content-center w-25">
+                      You have not Registerd
+                    </span>{" "}
+                    <button
+                      onClick={handleRegister}
+                      className="reg m-2 p-2 me-2 w-25 text-center rounded-3 table-hover"
+                      style={{ border: "2px solid green" }}
+                    >
+                      Register{" "}
+                    </button>
+                  </div>}
 
               <p className="para d-flex align-items-start justify-content-center text-start">
                 {event.des}
@@ -237,17 +244,17 @@ const Details = () => {
                 className="map my-5 bg-dark-subtle"
                 style={{ borderRadius: "20px", alignItems: "end" }}
               >
-                <div className="location" style={{ margin: "0", padding: "0" }}>
-                  <div
-                    className="icons d-flex align-items-center h5 p-1 ms-1"
-                    style={{ margin: "0", padding: "0" }}
-                  >
+                <div className="location">
+                  <div className="icons d-flex align-items-center h5 p-1 ms-1">
                     <PlaceOutlinedIcon />
-                    Location
+                    {`${event.location.city}, ${event.location.State}, ${event
+                      .location.country}`}
                   </div>
                   <div className="loc align-self-end">
                     <iframe
-                      src={event.mapEmbedUrl}
+                      src={`https://maps.google.com/maps?q=${event.location
+                        .coordinates.latitude},${event.location.coordinates
+                        .longitude}&z=15&output=embed`}
                       width="100%"
                       height="100%"
                       style={{
@@ -258,15 +265,16 @@ const Details = () => {
                         borderBottomRightRadius: "15px",
                         margin: "0"
                       }}
-                      allowfullscreen=""
+                      allowFullScreen
                       loading="lazy"
-                      referrerpolicy="no-referrer-when-downgrade"
+                      referrerPolicy="no-referrer-when-downgrade"
                     />
                   </div>
                 </div>
               </div>
             </div>
           </div>
+          {/* <Footer/> */}
         </div>
       )}
     </div>

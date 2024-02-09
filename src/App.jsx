@@ -4,7 +4,6 @@
 import './App.css'
 // import NewDetail from './components/NewDetail'
 import Details from './components/Details'
-import Footer from './components/Footer'
 
 
 function App() {
@@ -12,7 +11,6 @@ function App() {
   return (
     <>
       <Details/>
-      <Footer/>
       {/* <NewDetail/> */}
     </>
   )
